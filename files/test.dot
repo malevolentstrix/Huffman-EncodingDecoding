@@ -1,0 +1,12 @@
+digraph g {
+ "\n21" -> "\n9" [color=red, label=0]
+ "\n9" -> "\n4\n D" [color=red, label=0]
+ "\n9" -> "\n5\n B" [color=blue, label=1]
+ "\n21" -> "\n12" [color=blue, label=1]
+ "\n12" -> "\n6\n C" [color=red, label=0]
+ "\n12" -> "\n6" [color=blue, label=1]
+ "\n6" -> "\n3\n A" [color=red, label=0]
+ "\n6" -> "\n3" [color=blue, label=1]
+ "\n3" -> "\n1\n /n" [color=red, label=0]
+ "\n3" -> "\n2\n E" [color=blue, label=1]
+}

@@ -1,0 +1,3 @@
+clear all;clc;figure
+input = [ 99 120 169 202 205 238 242 247 293 342  ];time = [ 0.3315744 0.3427709 0.3493237 0.35561 0.3632057 0.3692968 0.3747066 0.3800075 0.387892 0.3938299  ];
+ plot(input,time,'-*');grid on;title('Huffman time vs input size plot');xlabel('input size, n');ylabel('Time (s)');
