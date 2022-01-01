@@ -1,9 +1,9 @@
 # Huffman coding and decoding in Java with GUI
+## DSA Project for Semester 3 by Jithin John and N Moneesh
 
 
 ## Introduction
-This code was implemented for algorithm course project.
-Key notes:
+
 - This was implemented in java
 - It uses priority queue, min heap and hash map data structures.
 - The input is file or written text in GUI.
