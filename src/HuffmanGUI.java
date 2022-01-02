@@ -58,7 +58,7 @@ public class HuffmanGUI extends JFrame {
 		JLabel lblNewLabel = new JLabel("Write a Text Here");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setBounds(111, 74, 137, 34);
+		lblNewLabel.setBounds(111, 120, 137, 34);
 		panel.add(lblNewLabel);	
 		JTextArea textArea = new JTextArea();
 		textArea.setBounds(258, 92, 327, 95);
@@ -69,7 +69,7 @@ public class HuffmanGUI extends JFrame {
 		JLabel lblChooseInputFile = new JLabel("Choose  Input File");
 		lblChooseInputFile.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblChooseInputFile.setForeground(Color.WHITE);
-		lblChooseInputFile.setBounds(134, 221, 137, 34);
+		lblChooseInputFile.setBounds(134, 237, 137, 34);
 		panel.add(lblChooseInputFile);
 		
 		JButton btnNewButton = new JButton("Choose File");
@@ -136,72 +136,78 @@ public class HuffmanGUI extends JFrame {
 		 table.setFillsViewportHeight(true);
 		 
 		 JSeparator separator = new JSeparator();
-		 separator.setBounds(10, 462, 771, 16);
+		 separator.setBounds(10, 472, 1500, 16);
 		 panel.add(separator);
 		 
 		 JSeparator separator_1 = new JSeparator();
-		 separator_1.setBounds(10, 283, 771, 16);
+		 separator_1.setBounds(10, 283, 1500, 16);
 		 panel.add(separator_1);
 		 
 		 JLabel lblCost = new JLabel("COST");
 		 lblCost.setForeground(Color.WHITE);
 		 lblCost.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		 lblCost.setBounds(33, 462, 64, 34);
+		 lblCost.setBounds(33, 482, 64, 34);
 		 panel.add(lblCost);
 		 
 		 JLabel lblOriginalStringCost = new JLabel("Original String Cost : ");
 		 lblOriginalStringCost.setForeground(Color.WHITE);
 		 lblOriginalStringCost.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		 lblOriginalStringCost.setBounds(111, 494, 137, 28);
+		 lblOriginalStringCost.setBounds(111, 514, 137, 28);
 		 panel.add(lblOriginalStringCost);
 		 
-		 JLabel lblEncodeStringCost = new JLabel("Encode String Cost: ");
+		 JLabel lblEncodeStringCost = new JLabel("Encoded String Cost : ");
 		 lblEncodeStringCost.setForeground(Color.WHITE);
 		 lblEncodeStringCost.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		 lblEncodeStringCost.setBounds(111, 526, 137, 28);
+		 lblEncodeStringCost.setBounds(111, 546, 140, 28);
 		 panel.add(lblEncodeStringCost);
 		 
-		 JLabel lblPercentage = new JLabel("reducation %:");
+		 JLabel lblPercentage = new JLabel("Reduction %       :");
 		 lblPercentage.setForeground(Color.WHITE);
 		 lblPercentage.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		 lblPercentage.setBounds(111, 556, 1307, 28);
+		 lblPercentage.setBounds(111, 576, 1307, 28);
 		 panel.add(lblPercentage);
 		 
-		 JLabel lblGeneratingGraphvizFile = new JLabel("Generating Graphviz file : ");
+		 JLabel lblGeneratingGraphvizFile = new JLabel("Tree Generation : ");
 		 lblGeneratingGraphvizFile.setForeground(Color.WHITE);
 		 lblGeneratingGraphvizFile.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		 lblGeneratingGraphvizFile.setBounds(111, 587, 160, 28);
+		 lblGeneratingGraphvizFile.setBounds(111, 607, 160, 28);
 		 panel.add(lblGeneratingGraphvizFile);
 		 
-		 JLabel lblNewLabel_1 = new JLabel("HuffMan Ecoding ");
-		 lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\DELL\\Desktop\\EnodeHome.png"));
+		 JLabel lblNewLabel_1 = new JLabel("Huffman Encoding And Decoding");
+		 JLabel lblNewLabel_2 = new JLabel("A Project By Jithin John(AM.EN.U4AIE20135) and N Moneesh(AM.EN.U4AIE20150)");
+		 lblNewLabel_1.setIcon(new ImageIcon("/home/Downloads/83648898.jpeg"));
 		 lblNewLabel_1.setForeground(Color.WHITE);
-		 lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 16));
-		 lblNewLabel_1.setBounds(323, 11, 224, 70);
+		 lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD,30));
+		 lblNewLabel_1.setBounds(430, 11, 1000, 70);
+		 lblNewLabel_2.setIcon(new ImageIcon("../"));
+		 lblNewLabel_2.setForeground(Color.WHITE);
+		 lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));
+		 lblNewLabel_2.setBounds(250, 650, 1000, 70);
 		 panel.add(lblNewLabel_1);
+		 panel.add(lblNewLabel_2);
 		 
 		 JLabel lblVariable = new JLabel(Integer.toString((int) sl));
 		 lblVariable.setForeground(Color.WHITE);
 		 lblVariable.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		 lblVariable.setBounds(247, 494, 137, 28);
+		 lblVariable.setBounds(247, 514, 137, 28);
 		 panel.add(lblVariable);
 		 
 		 JLabel lblVariablee = new JLabel(Integer.toString((int) el));
 		 lblVariablee.setForeground(Color.WHITE);
 		 lblVariablee.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		 lblVariablee.setBounds(247, 526, 92, 28);
+		 lblVariablee.setBounds(247, 546, 92, 28);
 		 panel.add(lblVariablee);
 		 
 		 JLabel lblpercentage = new JLabel(Integer.toString((int)r) + " %");
 		 lblpercentage.setForeground(Color.WHITE);
 		 lblpercentage.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		 lblpercentage.setBounds(247, 556, 92, 28);
+		 lblpercentage.setBounds(247, 576, 92, 28);
 		 panel.add(lblpercentage);
 		 
 		 JLabel lblDone = new JLabel("Done");
 		 lblDone.setForeground(Color.WHITE);
 		 lblDone.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		 lblDone.setBounds(258, 587, 92, 28);
+		 lblDone.setBounds(247, 607, 92, 28);
 		 panel.add(lblDone);
 		 
 		 JLabel lblEncodedString = new JLabel("Encoded String : " + EncodedStr);
