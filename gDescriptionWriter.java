@@ -32,7 +32,7 @@ public class gDescriptionWriter {
 		if (!treeInfo.checkIfLeafOrNot(n)) {
 			if (n.left != null) {
 				String tempVariable2 = "";
-				char tempVariable = n.left.ch;
+				char tempVariable = n.left.character;
 				if (tempVariable != '\0' && tempVariable != ' ' && tempVariable != '"' && tempVariable != '\n')
 					tempVariable2 = "\\n " + tempVariable;
 				else if (tempVariable == ' ')
@@ -47,7 +47,7 @@ public class gDescriptionWriter {
 			}
 			if (n.right != null) {
 				String tempVariable2 = "";
-				char tempVariable = n.right.ch;
+				char tempVariable = n.right.character;
 				if (tempVariable != '\0' && tempVariable != ' ' && tempVariable != '"' && tempVariable != '\n')
 					tempVariable2 = "\\n " + tempVariable;
 				else if (tempVariable == ' ')

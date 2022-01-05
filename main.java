@@ -10,20 +10,18 @@ public class main {
 
 	public static void main(String[] args) throws Exception {
 
-		String orgFile = "../files/original.txt";
-		String dotFile = "../files/test.dot";
-		String orgString = readFile(orgFile);
-		HuffManDisplay h = new HuffManDisplay(orgString, dotFile);
-		boolean ShowInConsole = true;
+		String orgFile = "./inputStringFile.txt";
+		String dotFile = "./outputDescriptionFile.dot";
+		String givenString = readFile(orgFile);
+		HuffManDisplay h = new HuffManDisplay(givenString, dotFile);
 		boolean isThisTestData = false;
-		h.DisplayHuffman(ShowInConsole, isThisTestData);
+		h.DisplayHuffman(isThisTestData);
 		h.WriteToDictionary();
 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					HuffmanGUI frame = new HuffmanGUI(h.DataArray, h.encodedString, h.DecodedString, h.EncodedCost,
-							h.OrgCost, h.Percent, ShowInConsole);
+					HuffmanGUI frame = new HuffmanGUI(h.DataArray, h.encodedString, h.DecodedString, h.sizeAfterCoding,h.sizeForGivenString, h.reductionPercentage);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -32,12 +30,11 @@ public class main {
 		});
 
 		Desktop d = Desktop.getDesktop();
-		Runtime.getRuntime().exec("dot -Tpng ../files/test.dot -o ../files/k.png");
-		String filePath = "../files/k.png";
+		Runtime.getRuntime().exec("dot -Tpng ./outputDescriptionFile.dot -o ./finalOutputHuffmanTree.png");
+		String filePath = "./finalOutputHuffmanTree.png";
 		File file = new File(filePath);
 
 		URI uri = file.toURI();
-		System.out.println(uri.toString());
 		d.browse(new URI(uri.toString()));
 	}
 

@@ -15,10 +15,10 @@ public class Coding {
 
 	public String encode() {
 		StringBuilder sb = new StringBuilder();
-		Character ch;
+		Character character;
 		for (int i = 0; i < givenString.length(); i++) {
-			ch = givenString.charAt(i);
-			sb.append(characterToCode.get(ch));
+			character = givenString.charAt(i);
+			sb.append(characterToCode.get(character));
 		}
 		String encodedString = sb.toString();
 		return encodedString;

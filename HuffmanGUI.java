@@ -26,8 +26,7 @@ public class HuffmanGUI extends JFrame {
 	StringBuilder sb = new StringBuilder();
 	private JPanel contentPane;
 
-	public HuffmanGUI(String[][] arr, String EncodedStr, String DecodedStr, double el, double sl, double r,
-			boolean ShowInConsole) {
+	public HuffmanGUI(String[][] arr, String stringEncoded, String stringDecoded, double el, double sl, double r) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 823, 689);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -62,12 +61,11 @@ public class HuffmanGUI extends JFrame {
 
 					}
 					Desktop d = Desktop.getDesktop();
-					Runtime.getRuntime().exec("dot -Tpng ../files/test.dot -o ../files/k.png");
-					String filePath = "../files/k.png";
+					Runtime.getRuntime().exec("dot -Tpng outputDescriptionFile.dot -o finalOutputHuffmanTree.png");
+					String filePath = "finalOutputHuffmanTree.png";
 					File file = new File(filePath);
 
 					URI uri = file.toURI();
-					System.out.println(uri.toString());
 					try {
 						d.browse(new URI(uri.toString()));
 					} catch (URISyntaxException r) {
@@ -75,21 +73,17 @@ public class HuffmanGUI extends JFrame {
 				} catch (IOException e) {
 					System.out.println(e);
 				}
-				String dotFile = "../files/test.dot";
-
-				System.out.print("* Loading the file...");
-				System.out.println("DONE");
+				String dotFile = "./outputDescriptionFile.dot";
 
 				HuffManDisplay h = new HuffManDisplay(sb.toString(), dotFile);
 
 				boolean isThisTestData = false;
-				h.DisplayHuffman(ShowInConsole, isThisTestData);
+				h.DisplayHuffman(isThisTestData);
 
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							HuffmanGUI frame = new HuffmanGUI(h.DataArray, h.encodedString, h.DecodedString,
-									h.EncodedCost, h.OrgCost, h.Percent, ShowInConsole);
+							HuffmanGUI frame = new HuffmanGUI(h.DataArray, h.encodedString, h.DecodedString,h.sizeAfterCoding, h.sizeForGivenString, h.reductionPercentage);
 							frame.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -132,35 +126,35 @@ public class HuffmanGUI extends JFrame {
 		separator_1.setBounds(10, 250, 1500, 16);
 		panel.add(separator_1);
 
-		JLabel lblCost = new JLabel("COST");
-		lblCost.setForeground(Color.WHITE);
-		lblCost.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblCost.setBounds(33, 482, 64, 34);
-		panel.add(lblCost);
+		JLabel lSize = new JLabel("SIZE");
+		lSize.setForeground(Color.WHITE);
+		lSize.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lSize.setBounds(33, 482, 64, 34);
+		panel.add(lSize);
 
-		JLabel lblOriginalStringCost = new JLabel("Original String Cost : ");
-		lblOriginalStringCost.setForeground(Color.WHITE);
-		lblOriginalStringCost.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblOriginalStringCost.setBounds(111, 514, 137, 28);
-		panel.add(lblOriginalStringCost);
+		JLabel lSizeOfOriginalString = new JLabel("Inputted String Size : ");
+		lSizeOfOriginalString.setForeground(Color.WHITE);
+		lSizeOfOriginalString.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lSizeOfOriginalString.setBounds(111, 514, 137, 28);
+		panel.add(lSizeOfOriginalString);
 
-		JLabel lblEncodeStringCost = new JLabel("Encoded String Cost : ");
-		lblEncodeStringCost.setForeground(Color.WHITE);
-		lblEncodeStringCost.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblEncodeStringCost.setBounds(111, 546, 140, 28);
-		panel.add(lblEncodeStringCost);
+		JLabel lSizeOfCodedString = new JLabel("Encoded String Size : ");
+		lSizeOfCodedString.setForeground(Color.WHITE);
+		lSizeOfCodedString.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lSizeOfCodedString.setBounds(111, 546, 140, 28);
+		panel.add(lSizeOfCodedString);
 
-		JLabel lblPercentage = new JLabel("Reduction %       :");
-		lblPercentage.setForeground(Color.WHITE);
-		lblPercentage.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblPercentage.setBounds(111, 576, 1307, 28);
-		panel.add(lblPercentage);
+		JLabel lReduction = new JLabel("Reduction %       :");
+		lReduction.setForeground(Color.WHITE);
+		lReduction.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lReduction.setBounds(111, 576, 1307, 28);
+		panel.add(lReduction);
 
-		JLabel lblGeneratingGraphvizFile = new JLabel("Tree Generation : ");
-		lblGeneratingGraphvizFile.setForeground(Color.WHITE);
-		lblGeneratingGraphvizFile.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblGeneratingGraphvizFile.setBounds(111, 607, 160, 28);
-		panel.add(lblGeneratingGraphvizFile);
+		JLabel lTreeGeneration = new JLabel("Tree Generation : ");
+		lTreeGeneration.setForeground(Color.WHITE);
+		lTreeGeneration.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lTreeGeneration.setBounds(111, 607, 160, 28);
+		panel.add(lTreeGeneration);
 
 		JLabel lblNewLabel_1 = new JLabel("Huffman Encoding And Decoding");
 		JLabel lblNewLabel_2 = new JLabel("A Project By Jithin John(AM.EN.U4AIE20135) and N Moneesh(AM.EN.U4AIE20150)");
@@ -187,11 +181,11 @@ public class HuffmanGUI extends JFrame {
 		lblVariablee.setBounds(247, 546, 92, 28);
 		panel.add(lblVariablee);
 
-		JLabel lblpercentage = new JLabel(Integer.toString((int) r) + " %");
-		lblpercentage.setForeground(Color.WHITE);
-		lblpercentage.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblpercentage.setBounds(247, 576, 92, 28);
-		panel.add(lblpercentage);
+		JLabel lReductionValue = new JLabel(Integer.toString((int) r) + " %");
+		lReductionValue.setForeground(Color.WHITE);
+		lReductionValue.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lReductionValue.setBounds(247, 576, 92, 28);
+		panel.add(lReductionValue);
 
 		JLabel lblDone = new JLabel("Done");
 		lblDone.setForeground(Color.WHITE);
@@ -199,17 +193,17 @@ public class HuffmanGUI extends JFrame {
 		lblDone.setBounds(247, 607, 92, 28);
 		panel.add(lblDone);
 
-		JLabel lblEncodedString = new JLabel("Encoded String : " + EncodedStr);
-		lblEncodedString.setForeground(Color.WHITE);
-		lblEncodedString.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblEncodedString.setBounds(33, 415, 1370, 28);
-		panel.add(lblEncodedString);
+		JLabel lEncodedSizeValue = new JLabel("Encoded String : " + stringEncoded);
+		lEncodedSizeValue.setForeground(Color.WHITE);
+		lEncodedSizeValue.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lEncodedSizeValue.setBounds(33, 415, 1370, 28);
+		panel.add(lEncodedSizeValue);
 
-		JLabel lblDecodedString = new JLabel("Decoded String : " + DecodedStr);
-		lblDecodedString.setForeground(Color.WHITE);
-		lblDecodedString.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblDecodedString.setBounds(33, 436, 1370, 28);
-		panel.add(lblDecodedString);
+		JLabel lOriginalSizeValue = new JLabel("Decoded String : " + stringDecoded);
+		lOriginalSizeValue.setForeground(Color.WHITE);
+		lOriginalSizeValue.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lOriginalSizeValue.setBounds(33, 436, 1370, 28);
+		panel.add(lOriginalSizeValue);
 		table.setVisible(true);
 	}
 }

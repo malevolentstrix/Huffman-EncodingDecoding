@@ -44,17 +44,17 @@ public class Huffman {
 	}
 
 	private void numberofWords() {
-		Character ch;
+		Character character;
 		Integer weight;
 
 		for (int i = 0; i < givenString.length(); i++) {
-			ch = givenString.charAt(i);
+			character = givenString.charAt(i);
 
-			if (characterToFrequency.get(ch) == null)
+			if (characterToFrequency.get(character) == null)
 				weight = 1;
 			else
-				weight = characterToFrequency.get(ch) + 1;
-			characterToFrequency.put(ch, weight);
+				weight = characterToFrequency.get(character) + 1;
+			characterToFrequency.put(character, weight);
 		}
 	}
 
@@ -70,8 +70,8 @@ public class Huffman {
 				buildCodeRecursion(node.left, code + '0');
 				buildCodeRecursion(node.right, code + '1');
 			} else {
-				characterToCode.put(node.ch, code);
-				codeToCharacter.put(code, node.ch);
+				characterToCode.put(node.character, code);
+				codeToCharacter.put(code, node.character);
 			}
 		}
 	}
@@ -104,9 +104,9 @@ public class Huffman {
 	private void buildHeap() {
 
 		for (Map.Entry<Character, Integer> entry : characterToFrequency.entrySet()) {
-			Character ch = entry.getKey();
+			Character character = entry.getKey();
 			Integer weight = entry.getValue();
-			node node = new node(ch, weight);
+			node node = new node(character, weight);
 			priorityQueue.insert(node);
 		}
 	}

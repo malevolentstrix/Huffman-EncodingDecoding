@@ -5,23 +5,23 @@ import java.io.IOException;
 
 public class HuffManDisplay {
 	public static Huffman huffmanAccessor;
-	public static gDescriptionWriter Graph;
+	public static gDescriptionWriter descriptionVariable;
 	public static Coding Coding;
 	public static String dot;
 	public static String orginalString;
 	static String encodedString;
 	static String DecodedString;
 	static String[][] DataArray;
-	static double OrgCost;
-	static double EncodedCost;
-	static double Percent;
+	static double sizeForGivenString;
+	static double sizeAfterCoding;
+	static double reductionPercentage;
 
-	public HuffManDisplay(String orgStr, String dotfilename) {
+	public HuffManDisplay(String givenString, String dotfilename) {
 		dot = dotfilename;
-		orginalString = orgStr;
-		huffmanAccessor = new Huffman(orgStr, dotfilename);
-		Graph = new gDescriptionWriter(orgStr, dotfilename, huffmanAccessor);
-		Coding = new Coding(orgStr, huffmanAccessor.rCodeToCharacter(), huffmanAccessor.rCharacterToCode());
+		orginalString = givenString;
+		huffmanAccessor = new Huffman(givenString, dotfilename);
+		descriptionVariable = new gDescriptionWriter(givenString, dotfilename, huffmanAccessor);
+		Coding = new Coding(givenString, huffmanAccessor.rCodeToCharacter(), huffmanAccessor.rCharacterToCode());
 
 	}
 
@@ -52,7 +52,7 @@ public class HuffManDisplay {
 	public void WriteToDictionary() {
 		FileWriter fw;
 		try {
-			fw = new FileWriter("../files/Dictionary.txt");
+			fw = new FileWriter("HuffmanCodesAssigned.txt");
 			fw.write("Letter, " + "Code: " + "\n");
 
 			for (Map.Entry<Character, String> entry : huffmanAccessor.characterToCode.entrySet()) {
@@ -68,7 +68,7 @@ public class HuffManDisplay {
 		}
 	}
 
-	public static void DisplayHuffman(boolean ShowInConsole, boolean isThisTestData) {
+	public static void DisplayHuffman(boolean isThisTestData) {
 		DataArray = null;
 		DataArray = new String[orginalString.length()][3];
 
@@ -77,9 +77,8 @@ public class HuffManDisplay {
 		DecodedString = Coding.decode(encodedString);
 		myassert(orginalString.equals(DecodedString));
 
-		Graph.generateDescriptionFile(dot);
+		descriptionVariable.generateDescriptionFile(dot);
 
-		System.out.println("\n Letter: Frequency: Code:");
 		int i = 0;
 		for (Map.Entry<Character, Integer> entry : huffmanAccessor.characterToFrequency.entrySet()) {
 			String key = entry.getKey().toString();
@@ -89,11 +88,8 @@ public class HuffManDisplay {
 			DataArray[i][0] = key;
 			DataArray[i][1] = Integer.toString(val);
 			i++;
-			if (ShowInConsole)
-				System.out.println(key + " occurs " + val + " times");
 		}
 
-		System.out.println("\nLetter: Code");
 
 		int j = 0;
 
@@ -104,20 +100,14 @@ public class HuffManDisplay {
 				key = "\\n";
 			DataArray[j][2] = val;
 			j++;
-			if (ShowInConsole)
-				System.out.println(key + ": " + val);
 		}
 
 		if (isThisTestData)
 			WriteToDictionaryTestData();
 
-		OrgCost = orginalString.length() * 7;
-		EncodedCost = encodedString.length();
-		System.out.println("\nCOST: ");
-		System.out.println("Original string cost = " + (int) OrgCost + " bits");
-		System.out.println("Encoded  string cost = " + (int) EncodedCost + " bits");
-		Percent = -1 * ((EncodedCost - OrgCost) / OrgCost) * 100;
-		System.out.println("% of reduction = " + (Percent));
+		sizeForGivenString = orginalString.length() * 7;
+		sizeAfterCoding = encodedString.length();
+		reductionPercentage = -1 * ((sizeAfterCoding - sizeForGivenString) / sizeForGivenString) * 100;
 	}
 
 	public static void myassert(boolean x) {
