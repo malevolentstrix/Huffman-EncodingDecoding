@@ -10,6 +10,8 @@ public class main {
 
 	public static void main(String[] args) throws Exception {
 
+		long startTime = System.nanoTime();
+		long beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
 		String orgFile = "./inputStringFile.txt";
 		String dotFile = "./outputDescriptionFile.dot";
 		String givenString = readFile(orgFile);
@@ -21,7 +23,8 @@ public class main {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					HuffmanGUI frame = new HuffmanGUI(h.DataArray, h.encodedString, h.DecodedString, h.sizeAfterCoding,h.sizeForGivenString, h.reductionPercentage);
+					HuffmanGUI frame = new HuffmanGUI(h.DataArray, h.encodedString, h.DecodedString, h.sizeAfterCoding,
+							h.sizeForGivenString, h.reductionPercentage);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,6 +39,12 @@ public class main {
 
 		URI uri = file.toURI();
 		d.browse(new URI(uri.toString()));
+		long endTime = System.nanoTime();
+		System.out.println("Time Taken " + (endTime - startTime) + " ns");
+		long afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+		long actualMemUsed=afterUsedMem-beforeUsedMem;
+		int dataSize = 1024 * 1024;
+		System.out.println("Memory Used " + (actualMemUsed)/dataSize + "MB");
 	}
 
 	public static String readFile(String fname) {
