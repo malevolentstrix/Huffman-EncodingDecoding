@@ -1,13 +1,13 @@
 
 import java.util.*;
 
-public class pq<E> {
+public class priorityQueue<E> {
     Object[] queue;
     private int size = 0;
     private final Comparator<? super E> comparator;
     int modCount = 0;
 
-    public pq(int initialCapacity,
+    public priorityQueue(int initialCapacity,
             Comparator<? super E> comparator) {
 
         if (initialCapacity < 1)

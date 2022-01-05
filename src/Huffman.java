@@ -3,117 +3,117 @@ import java.util.Map;
 import java.util.Comparator;
 
 public class Huffman {
-	public String OriginalStr;
-	public String encodedStr;
-	public String decodedStr;
-	public HashMap<Character, Integer> CharFreq;
-	public HashMap<Character, String> CharCode;
-	public HashMap<String, Character> CodeChar;
-	private pq<node> pq;
-	public int treeSize;
+	public String givenString;
+	public String stringAfterCoding;
+	public String stringBeforeCoding;
+	public HashMap<Character, Integer> characterToFrequency;
+	public HashMap<Character, String> characterToCode;
+	public HashMap<String, Character> codeToCharacter;
+	private priorityQueue<node> priorityQueue;
+	public int sizeOfHuffManTree;
 	public node root;
 
-	public Huffman(String OriginalStr, String dotfilename) {
-		this.treeSize = 0;
-		this.OriginalStr = OriginalStr;
-		CharFreq = new HashMap<Character, Integer>();
-		CharCode = new HashMap<Character, String>();
-		CodeChar = new HashMap<String, Character>();
-		pq = new pq<node>(OriginalStr.length(), new Comparator<node>() {
+	public Huffman(String givenString, String dotfilename) {
+		this.sizeOfHuffManTree = 0;
+		this.givenString = givenString;
+		characterToFrequency = new HashMap<Character, Integer>();
+		characterToCode = new HashMap<Character, String>();
+		codeToCharacter = new HashMap<String, Character>();
+		priorityQueue = new priorityQueue<node>(givenString.length(), new Comparator<node>() {
 			@Override
-			public int compare(node n1, node n2) {
-				if (n1.weight < n2.weight)
+			public int compare(node node1, node node2) {
+				if (node1.weight < node2.weight)
 					return -1;
-				else if (n1.weight > n2.weight)
+				else if (node1.weight > node2.weight)
 					return 1;
 				return 0;
 			}
 		});
 
-		countWord();
+		numberofWords();
 		buildTree();
 		buildCodeTable();
 	}
 
-	public HashMap<String, Character> getCodeChar() {
-		return CodeChar;
+	public HashMap<String, Character> rCodeToCharacter() {
+		return codeToCharacter;
 	}
 
-	public HashMap<Character, String> getCharCode() {
-		return CharCode;
+	public HashMap<Character, String> rCharacterToCode() {
+		return characterToCode;
 	}
 
-	private void countWord() {
+	private void numberofWords() {
 		Character ch;
 		Integer weight;
 
-		for (int i = 0; i < OriginalStr.length(); i++) {
-			ch = OriginalStr.charAt(i);
+		for (int i = 0; i < givenString.length(); i++) {
+			ch = givenString.charAt(i);
 
-			if (CharFreq.get(ch) == null)
+			if (characterToFrequency.get(ch) == null)
 				weight = 1;
 			else
-				weight = CharFreq.get(ch) + 1;
-			CharFreq.put(ch, weight);
+				weight = characterToFrequency.get(ch) + 1;
+			characterToFrequency.put(ch, weight);
 		}
 	}
 
 	private void buildCodeTable() {
 		String code = "";
-		node n = root;
-		buildCodeRecursion(n, code);
+		node node = root;
+		buildCodeRecursion(node, code);
 	}
 
-	private void buildCodeRecursion(node n, String code) {
-		if (n != null) {
-			if (!isLeaf(n)) {
-				buildCodeRecursion(n.left, code + '0');
-				buildCodeRecursion(n.right, code + '1');
+	private void buildCodeRecursion(node node, String code) {
+		if (node != null) {
+			if (!checkIfLeafOrNot(node)) {
+				buildCodeRecursion(node.left, code + '0');
+				buildCodeRecursion(node.right, code + '1');
 			} else {
-				CharCode.put(n.ch, code);
-				CodeChar.put(code, n.ch);
+				characterToCode.put(node.ch, code);
+				codeToCharacter.put(code, node.ch);
 			}
 		}
 	}
 
 	private void buildTree() {
-		minHeapBuild();
+		buildHeap();
 
 		node left, right;
-		while (pq != null) {
-			left = pq.serve();
-			treeSize++;
-			if (pq.retrieve() != null) {
-				right = pq.serve();
-				treeSize++;
+		while (priorityQueue != null) {
+			left = priorityQueue.serve();
+			sizeOfHuffManTree++;
+			if (priorityQueue.retrieve() != null) {
+				right = priorityQueue.serve();
+				sizeOfHuffManTree++;
 				root = new node('\0', left.weight + right.weight, left, right);
 			} else {
 				root = new node('\0', left.weight, left, null);
 			}
 
-			if (pq.retrieve() != null) {
-				pq.insert(root);
+			if (priorityQueue.retrieve() != null) {
+				priorityQueue.insert(root);
 			} else {
 
-				treeSize++;
+				sizeOfHuffManTree++;
 				break;
 			}
 		}
 	}
 
-	private void minHeapBuild() {
+	private void buildHeap() {
 
-		for (Map.Entry<Character, Integer> entry : CharFreq.entrySet()) {
+		for (Map.Entry<Character, Integer> entry : characterToFrequency.entrySet()) {
 			Character ch = entry.getKey();
 			Integer weight = entry.getValue();
-			node n = new node(ch, weight);
-			pq.insert(n);
+			node node = new node(ch, weight);
+			priorityQueue.insert(node);
 		}
 	}
 
-	public boolean isLeaf(node n) {
+	public boolean checkIfLeafOrNot(node node) {
 
-		return (n.left == null) && (n.right == null);
+		return (node.left == null) && (node.right == null);
 	}
 
 }

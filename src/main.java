@@ -4,12 +4,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.awt.Desktop;
-import javax.imageio.ImageIO;
 import java.net.URI;
-import java.io.File;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.Arrays;
 
 public class main {
 

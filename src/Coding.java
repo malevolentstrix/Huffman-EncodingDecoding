@@ -1,41 +1,41 @@
 import java.util.HashMap;
 
 public class Coding {
-	String OrginalString;
-	public String decodedStr;
-	HashMap<Character, String> CharCode;
-	HashMap<String, Character> CodeChar;
+	String givenString;
+	public String decodedString;
+	HashMap<Character, String> characterToCode;
+	HashMap<String, Character> codeToCharacter;
 
-	public Coding(String org, HashMap<String, Character> CodeCh, HashMap<Character, String> ChCode) {
-		OrginalString = org;
-		CharCode = ChCode;
-		CodeChar = CodeCh;
+	public Coding(String org, HashMap<String, Character> codeCharacter, HashMap<Character, String> characterCode) {
+		givenString = org;
+		characterToCode = characterCode;
+		codeToCharacter = codeCharacter;
 
 	}
 
 	public String encode() {
 		StringBuilder sb = new StringBuilder();
 		Character ch;
-		for (int i = 0; i < OrginalString.length(); i++) {
-			ch = OrginalString.charAt(i);
-			sb.append(CharCode.get(ch));
+		for (int i = 0; i < givenString.length(); i++) {
+			ch = givenString.charAt(i);
+			sb.append(characterToCode.get(ch));
 		}
-		String encodedStr = sb.toString();
-		return encodedStr;
+		String encodedString = sb.toString();
+		return encodedString;
 	}
 
-	public String decode(String encodedStr) {
+	public String decode(String encodedString) {
 		StringBuilder sb = new StringBuilder();
 		String t = "";
 
-		for (int i = 0; i < encodedStr.length(); i++) {
-			t += encodedStr.charAt(i);
-			if (CodeChar.get(t) != null) {
-				sb.append(CodeChar.get(t));
+		for (int i = 0; i < encodedString.length(); i++) {
+			t += encodedString.charAt(i);
+			if (codeToCharacter.get(t) != null) {
+				sb.append(codeToCharacter.get(t));
 				t = "";
 			}
 		}
-		decodedStr = sb.toString();
-		return decodedStr;
+		decodedString = sb.toString();
+		return decodedString;
 	}
 }

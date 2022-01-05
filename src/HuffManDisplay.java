@@ -1,17 +1,11 @@
-
 import java.util.Map;
-
-import javax.swing.JFileChooser;
-
-import java.awt.event.ActionEvent;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class HuffManDisplay {
-	public static Huffman h;
-	public static Graphvz Graph;
+	public static Huffman huffmanAccessor;
+	public static gDescriptionWriter Graph;
 	public static Coding Coding;
 	public static String dot;
 	public static String orginalString;
@@ -25,9 +19,9 @@ public class HuffManDisplay {
 	public HuffManDisplay(String orgStr, String dotfilename) {
 		dot = dotfilename;
 		orginalString = orgStr;
-		h = new Huffman(orgStr, dotfilename);
-		Graph = new Graphvz(orgStr, dotfilename, h);
-		Coding = new Coding(orgStr, h.getCodeChar(), h.getCharCode());
+		huffmanAccessor = new Huffman(orgStr, dotfilename);
+		Graph = new gDescriptionWriter(orgStr, dotfilename, huffmanAccessor);
+		Coding = new Coding(orgStr, huffmanAccessor.rCodeToCharacter(), huffmanAccessor.rCharacterToCode());
 
 	}
 
@@ -61,7 +55,7 @@ public class HuffManDisplay {
 			fw = new FileWriter("../files/Dictionary.txt");
 			fw.write("Letter, " + "Code: " + "\n");
 
-			for (Map.Entry<Character, String> entry : h.CharCode.entrySet()) {
+			for (Map.Entry<Character, String> entry : huffmanAccessor.characterToCode.entrySet()) {
 				String key = entry.getKey().toString();
 				String val = entry.getValue();
 				if (key.equals("\n"))
@@ -83,11 +77,11 @@ public class HuffManDisplay {
 		DecodedString = Coding.decode(encodedString);
 		myassert(orginalString.equals(DecodedString));
 
-		Graph.WriteGraphVizFile(dot);
+		Graph.generateDescriptionFile(dot);
 
 		System.out.println("\n Letter: Frequency: Code:");
 		int i = 0;
-		for (Map.Entry<Character, Integer> entry : h.CharFreq.entrySet()) {
+		for (Map.Entry<Character, Integer> entry : huffmanAccessor.characterToFrequency.entrySet()) {
 			String key = entry.getKey().toString();
 			int val = entry.getValue();
 			if (key.equals("\n"))
@@ -103,7 +97,7 @@ public class HuffManDisplay {
 
 		int j = 0;
 
-		for (Map.Entry<Character, String> entry : h.CharCode.entrySet()) {
+		for (Map.Entry<Character, String> entry : huffmanAccessor.characterToCode.entrySet()) {
 			String key = entry.getKey().toString();
 			String val = entry.getValue();
 			if (key.equals("\n"))
