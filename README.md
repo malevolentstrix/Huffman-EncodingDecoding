@@ -6,7 +6,7 @@
 
 - This was implemented in java
 - It uses priority queue, min heap and hash map data structures.
-- The input is file or written text in GUI.
+- The input can be given as a text file.
 - The output is through console or GUI (which one you prefer).
 - There is class to test random data generated in random way to analyze the time complexity.
 - GraphViz was used to visualize the output tree.
