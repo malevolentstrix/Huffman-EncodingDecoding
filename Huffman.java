@@ -63,7 +63,7 @@ public class Huffman {
 		node node = root;
 		buildCodeRecursion(node, code);
 	}
-
+// building the table for storng th codes
 	private void buildCodeRecursion(node node, String code) {
 		if (node != null) {
 			if (!checkIfLeafOrNot(node)) {
@@ -75,7 +75,7 @@ public class Huffman {
 			}
 		}
 	}
-
+// building the 
 	private void buildTree() {
 		buildHeap();
 

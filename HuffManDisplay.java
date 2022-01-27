@@ -25,29 +25,6 @@ public class HuffManDisplay {
 
 	}
 
-	public static void WriteToDictionaryTestData() {
-		BufferedWriter out = null;
-
-		try {
-			FileWriter fstream = new FileWriter("files/Tests.txt", true);
-			out = new BufferedWriter(fstream);
-
-			out.write("Data: " + orginalString + "\n");
-			out.write("Data size: " + orginalString.length() + "\n");
-			for (int i = 0; i < DataArray.length; i++) {
-				if (DataArray[i][0] == null)
-					break;
-				out.write("Letter: " + DataArray[i][0] + " frequency: " + DataArray[i][1] + " Code: " + DataArray[i][2]
-						+ "\n");
-
-			}
-			out.write("---------------------------------------------------------\n");
-
-			out.close();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-	}
 
 	public void WriteToDictionary() {
 		FileWriter fw;
@@ -55,7 +32,7 @@ public class HuffManDisplay {
 			fw = new FileWriter("HuffmanCodesAssigned.txt");
 			fw.write("Letter, " + "Code: " + "\n");
 
-			for (Map.Entry<Character, String> entry : huffmanAccessor.characterToCode.entrySet()) {
+			for (Map.Entry<Character, String> entry : huffmanAccessor.characterToCode.entrySet()) { 
 				String key = entry.getKey().toString();
 				String val = entry.getValue();
 				if (key.equals("\n"))
@@ -102,8 +79,6 @@ public class HuffManDisplay {
 			j++;
 		}
 
-		if (isThisTestData)
-			WriteToDictionaryTestData();
 
 		sizeForGivenString = orginalString.length() * 7;
 		sizeAfterCoding = encodedString.length();
