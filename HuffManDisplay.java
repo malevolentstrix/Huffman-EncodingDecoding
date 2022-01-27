@@ -52,8 +52,6 @@ public class HuffManDisplay {
 		encodedString = Coding.encode();
 
 		DecodedString = Coding.decode(encodedString);
-		myassert(orginalString.equals(DecodedString));
-
 		descriptionVariable.generateDescriptionFile(dot);
 
 		int i = 0;
@@ -83,12 +81,6 @@ public class HuffManDisplay {
 		sizeForGivenString = orginalString.length() * 7;
 		sizeAfterCoding = encodedString.length();
 		reductionPercentage = -1 * ((sizeAfterCoding - sizeForGivenString) / sizeForGivenString) * 100;
-	}
-
-	public static void myassert(boolean x) {
-		if (!x) {
-			throw new IllegalArgumentException("Assert fail");
-		}
 	}
 
 }
