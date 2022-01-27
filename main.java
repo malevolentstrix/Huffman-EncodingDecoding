@@ -16,8 +16,7 @@ public class main {
 		String dotFile = "./outputDescriptionFile.dot";
 		String givenString = readFile(orgFile);
 		HuffManDisplay h = new HuffManDisplay(givenString, dotFile);
-		boolean isThisTestData = false;
-		h.DisplayHuffman(isThisTestData);
+		h.DisplayHuffman();
 		h.WriteToDictionary();
 
 		EventQueue.invokeLater(new Runnable() {

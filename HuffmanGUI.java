@@ -77,8 +77,7 @@ public class HuffmanGUI extends JFrame {
 
 				HuffManDisplay h = new HuffManDisplay(sb.toString(), dotFile);
 
-				boolean isThisTestData = false;
-				h.DisplayHuffman(isThisTestData);
+				h.DisplayHuffman();
 
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {

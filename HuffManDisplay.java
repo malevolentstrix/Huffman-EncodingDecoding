@@ -44,7 +44,7 @@ public class HuffManDisplay {
 		}
 	}
 
-	public static void DisplayHuffman(boolean isThisTestData) {
+	public static void DisplayHuffman() {
 		DataArray = null;
 		DataArray = new String[orginalString.length()][3];
 
@@ -77,7 +77,7 @@ public class HuffManDisplay {
 		}
 
 
-		sizeForGivenString = orginalString.length() * 7;
+		sizeForGivenString = orginalString.length() * 8;
 		sizeAfterCoding = encodedString.length();
 		reductionPercentage = -1 * ((sizeAfterCoding - sizeForGivenString) / sizeForGivenString) * 100;
 	}
