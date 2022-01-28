@@ -76,6 +76,12 @@ public class HuffManDisplay {
 			j++;
 		}
 
+		sizeForGivenString = 0;
+		sizeAfterCoding = 0;
+		sizeOfTable = 0;
+		sumOfCodeSize = 0;
+		reductionPercentage = 0;
+		lengthOfTable = 0;
 		sizeForGivenString = orginalString.length() * 8;
 
 		sizeAfterCoding = encodedString.length();
