@@ -12,8 +12,11 @@ public class HuffManDisplay {
 	static String DecodedString;
 	static String[][] DataArray;
 	static double sizeForGivenString;
-	static double sizeAfterCoding;
+	static double sizeAfterCoding = 0;
+	static double sizeOfTable = 0;
+	static double sumOfCodeSize = 0;
 	static double reductionPercentage;
+	static int lengthOfTable = 0;
 
 	public HuffManDisplay(String givenString, String dotfilename) {
 		dot = dotfilename;
@@ -21,9 +24,7 @@ public class HuffManDisplay {
 		huffmanAccessor = new Huffman(givenString, dotfilename);
 		descriptionVariable = new gDescriptionWriter(givenString, dotfilename, huffmanAccessor);
 		Coding = new Coding(givenString, huffmanAccessor.rCodeToCharacter(), huffmanAccessor.rCharacterToCode());
-
 	}
-
 
 	public void WriteToDictionary() {
 		FileWriter fw;
@@ -31,7 +32,7 @@ public class HuffManDisplay {
 			fw = new FileWriter("HuffmanCodesAssigned.txt");
 			fw.write("Letter, " + "Code: " + "\n");
 
-			for (Map.Entry<Character, String> entry : huffmanAccessor.characterToCode.entrySet()) { 
+			for (Map.Entry<Character, String> entry : huffmanAccessor.characterToCode.entrySet()) {
 				String key = entry.getKey().toString();
 				String val = entry.getValue();
 				if (key.equals("\n"))
@@ -64,7 +65,6 @@ public class HuffManDisplay {
 			i++;
 		}
 
-
 		int j = 0;
 
 		for (Map.Entry<Character, String> entry : huffmanAccessor.characterToCode.entrySet()) {
@@ -76,9 +76,20 @@ public class HuffManDisplay {
 			j++;
 		}
 
-
 		sizeForGivenString = orginalString.length() * 8;
+
 		sizeAfterCoding = encodedString.length();
+		sizeOfTable = (DataArray[1].length);
+		for (int z = 0; z < DataArray.length; z++) {
+
+			if (DataArray[z][0] == null) {
+				break;
+			} else {
+				sumOfCodeSize = sumOfCodeSize + DataArray[z][2].length();
+				lengthOfTable++;
+			}
+		}
+		sizeAfterCoding = sizeAfterCoding + sumOfCodeSize + (lengthOfTable*8);
 		reductionPercentage = -1 * ((sizeAfterCoding - sizeForGivenString) / sizeForGivenString) * 100;
 	}
 

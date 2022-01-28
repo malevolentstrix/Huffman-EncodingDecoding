@@ -63,7 +63,6 @@ public class Huffman {
 		node node = root;
 		buildCodeRecursion(node, code);
 	}
-// building the table for storng th codes
 	private void buildCodeRecursion(node node, String code) {
 		if (node != null) {
 			if (!checkIfLeafOrNot(node)) {
@@ -75,7 +74,6 @@ public class Huffman {
 			}
 		}
 	}
-// building the 
 	private void buildTree() {
 		buildHeap();
 
@@ -87,10 +85,7 @@ public class Huffman {
 				right = priorityQueue.serve();
 				sizeOfHuffManTree++;
 				root = new node('\0', left.weight + right.weight, left, right);
-			} else {
-				root = new node('\0', left.weight, left, null);
-			}
-
+			} 
 			if (priorityQueue.retrieve() != null) {
 				priorityQueue.insert(root);
 			} else {

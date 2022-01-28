@@ -10,7 +10,6 @@ public class Coding {
 		givenString = org;
 		characterToCode = characterCode;
 		codeToCharacter = codeCharacter;
-
 	}
 
 	public String encode() {

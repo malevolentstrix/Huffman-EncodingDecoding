@@ -2,20 +2,12 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.*;  
-
 
 public class gDescriptionWriter {
 
 	String givenString;
 	String graphDescriptionFileName;
 	Huffman treeInfo;
-	int prevwe;
-	int flag = 0;
-	Map<Integer, String> map = new HashMap<>();
-	List<Integer> l = new ArrayList<>();
-
-
 
 	public gDescriptionWriter(String org, String dot, Huffman h) {
 		givenString = org;
@@ -49,22 +41,8 @@ public class gDescriptionWriter {
 					tempVariable2 = "\\n \\\"";
 				else if (tempVariable == '\n')
 					tempVariable2 = "\\n /n";
-				if (prevwe == n.weight) {
-					flag++;
-				}
-				map.put(n.weight, tempVariable2);
-				if (prevwe == n.weight && flag > 2) {
-					o.println(
-							" \"" + "\\n" + n.weight + "\" -> \"" + "\\n" + n.left.weight + tempVariable2
-									+ "\" [color=red, label=0]");
-				} else {
-
-					o.println(
-							" \"" + "\\n" + n.weight + "\" -> \"" + "\\n" + n.left.weight + tempVariable2
-									+ "\" [color=red, label=0]");
-				}
-				prevwe = n.weight;
-
+				o.println(
+						" \"" + "\\n" + n.weight + "\" -> \"" + "\\n" + n.left.weight + tempVariable2 + "\" [color=red, label=0]");
 				writerMethod(n.left, o);
 			}
 			if (n.right != null) {
@@ -78,17 +56,8 @@ public class gDescriptionWriter {
 					tempVariable2 = "\\n \\\"";
 				else if (tempVariable == '\n')
 					tempVariable2 = "\\n /n";
-				if (prevwe == n.weight) {
-					flag++;
-				}
-				if (prevwe == n.weight && flag > 2) {
-					o.println(" \"" + "\\" + "n" + n.weight + " " + "\" -> \"" + "\\n" + n.right.weight + tempVariable2
-							+ "\" [color=blue, label=1]");
-				} else {
-					o.println(" \"" + "\\" + "n" + n.weight + "\" -> \"" + "\\n" + n.right.weight + tempVariable2
-							+ "\" [color=blue, label=1]");
-				}
-				prevwe = n.weight;
+				o.println(" \"" + "\\" + "n" + n.weight + "\" -> \"" + "\\n" + n.right.weight + tempVariable2
+						+ "\" [color=blue, label=1]");
 				writerMethod(n.right, o);
 			}
 		}

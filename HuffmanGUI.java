@@ -56,7 +56,7 @@ public class HuffmanGUI extends JFrame {
 				try (BufferedReader in = new BufferedReader(new FileReader(f))) {
 					String line = in.readLine();
 					while (line != null) {
-						sb.append(line + "\n");
+						sb.append(line + "");
 						line = in.readLine();
 
 					}

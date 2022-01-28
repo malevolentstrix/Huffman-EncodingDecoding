@@ -18,6 +18,12 @@ public class main {
 		HuffManDisplay h = new HuffManDisplay(givenString, dotFile);
 		h.DisplayHuffman();
 		h.WriteToDictionary();
+		long endTime = System.nanoTime();
+		System.out.println("Time Taken " + (endTime - startTime) + " ns");
+		long afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+		long actualMemUsed=afterUsedMem-beforeUsedMem;
+		int dataSize = 1024 * 1024;
+		System.out.println("Memory Used " + (actualMemUsed)/dataSize + "MB");
 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -38,12 +44,7 @@ public class main {
 
 		URI uri = file.toURI();
 		d.browse(new URI(uri.toString()));
-		long endTime = System.nanoTime();
-		System.out.println("Time Taken " + (endTime - startTime) + " ns");
-		long afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
-		long actualMemUsed=afterUsedMem-beforeUsedMem;
-		int dataSize = 1024 * 1024;
-		System.out.println("Memory Used " + (actualMemUsed)/dataSize + "MB");
+
 	}
 
 	public static String readFile(String fname) {
