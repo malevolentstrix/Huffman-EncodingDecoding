@@ -8,6 +8,8 @@ public class gDescriptionWriter {
 	String givenString;
 	String graphDescriptionFileName;
 	Huffman treeInfo;
+	int prevwe;
+	int flag = 0;
 
 	public gDescriptionWriter(String org, String dot, Huffman h) {
 		givenString = org;
@@ -41,9 +43,19 @@ public class gDescriptionWriter {
 					tempVariable2 = "\\n \\\"";
 				else if (tempVariable == '\n')
 					tempVariable2 = "\\n /n";
-				o.println(
-						" \"" + "\\n" + n.weight + "\" -> \"" + "\\n" + n.left.weight + tempVariable2 + "\" [color=red, label=0]");
-				writerMethod(n.left, o);
+				if (prevwe == n.weight) {
+					flag++;
+				}
+				if (prevwe == n.weight && flag > 2) {
+					System.out.println("Graph Generation will not be correct");
+				} else {
+					o.println(
+							" \"" + "\\n" + n.weight + "\" -> \"" + "\\n" + n.left.weight + tempVariable2
+									+ "\" [color=red, label=0]");
+					writerMethod(n.right, o);
+
+				}
+				prevwe = n.weight;
 			}
 			if (n.right != null) {
 				String tempVariable2 = "";
@@ -56,9 +68,19 @@ public class gDescriptionWriter {
 					tempVariable2 = "\\n \\\"";
 				else if (tempVariable == '\n')
 					tempVariable2 = "\\n /n";
-				o.println(" \"" + "\\" + "n" + n.weight + "\" -> \"" + "\\n" + n.right.weight + tempVariable2
-						+ "\" [color=blue, label=1]");
-				writerMethod(n.right, o);
+				if (prevwe == n.weight) {
+					flag++;
+				}
+				if (prevwe == n.weight && flag > 2) {
+					System.out.println("Graph Generation will not be correct");
+				} else {
+					o.println(
+							" \"" + "\\n" + n.weight + "\" -> \"" + "\\n" + n.left.weight + tempVariable2
+									+ "\" [color=red, label=0]");
+					writerMethod(n.right, o);
+
+				}
+				prevwe = n.weight;
 			}
 		}
 	}

@@ -157,7 +157,7 @@ public class HuffmanGUI extends JFrame {
 
 		JLabel lblNewLabel_1 = new JLabel("Huffman Encoding And Decoding");
 		JLabel lblNewLabel_2 = new JLabel("A Project By Jithin John(AM.EN.U4AIE20135) and N Moneesh(AM.EN.U4AIE20150)");
-		lblNewLabel_1.setIcon(new ImageIcon("/home/Downloads/83648898.jpeg"));
+		//lblNewLabel_1.setIcon(new ImageIcon("/home/Downloads/83648898.jpeg"));
 		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 30));
 		lblNewLabel_1.setBounds(430, 11, 1000, 70);
