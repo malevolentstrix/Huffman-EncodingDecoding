@@ -51,7 +51,7 @@ public class HuffmanGUI extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				JFileChooser chooser = new JFileChooser();
-				chooser.showOpenDialog(null);
+				chooser.showOpenDialog(panel);
 				File f = chooser.getSelectedFile();
 				try (BufferedReader in = new BufferedReader(new FileReader(f))) {
 					String line = in.readLine();
